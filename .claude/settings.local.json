@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pandoc --track-changes=all \"C:\\\\Users\\\\sano.LAPTOP-QETUE7RR\\\\Desktop\\\\taion_handover_v12.docx\" -o /tmp/taion_spec.md)",
+      "Read(//tmp/**)",
+      "Bash(python \"C:\\\\Users\\\\sano.LAPTOP-QETUE7RR\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\e90c360a-b9e6-4ce9-b706-f23a6741e55e\\\\fa3a8cab-f959-403e-8faa-269383d85423\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\sano.LAPTOP-QETUE7RR\\\\Desktop\\\\taion_handover_v12.docx\" /tmp/taion_unpacked/)",
+      "Bash(pip install:*)",
+      "Bash(python3 -c ':*)",
+      "Bash(python3 -c \"import os; print\\(os.listdir\\('/tmp/taion_unpacked'\\)\\)\")",
+      "Bash(python3 -c \"import os, tempfile; print\\(tempfile.gettempdir\\(\\)\\)\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where python:*)",
+      "Bash(where python3:*)",
+      "Bash(python -c \"from PIL import Image, ImageDraw, ImageFont; print\\('ok'\\)\")",
+      "Bash(python -)",
+      "Bash(gh --version)"
+    ]
+  }
+}
