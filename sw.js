@@ -1,9 +1,9 @@
 const CACHE_NAME = 'taion-app-v2';
 const ASSETS = [
-  '/taion_app.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
+  './taion_app.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
 ];
 
 self.addEventListener('install', e => {
