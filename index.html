@@ -152,7 +152,8 @@ body{font-family:'Hiragino Sans','Meiryo','Yu Gothic',sans-serif;background:#f0f
 .summary-table{width:100%;border-collapse:collapse;margin-top:12px;}
 .summary-table th,.summary-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #eee;font-size:14px;}
 .summary-table th{background:#f0f4f8;font-weight:600;color:#444;font-size:13px;}
-.summary-table td:last-child{text-align:right;font-weight:600;}
+.summary-table td:last-child{text-align:right;font-weight:600;color:transparent;}
+.summary-table th:last-child{color:transparent;}
 .summary-table td:first-child,.summary-table th:first-child{white-space:nowrap;width:3em;}
 
 .note-box{background:#fef9e7;border:1px solid #f9e79f;border-radius:10px;padding:14px 18px;font-size:14px;color:#7d6608;margin-top:12px;}
@@ -1298,25 +1299,6 @@ function renderTotalResult(result) {
   const rankClass = 'rank-' + result.rank;
 
   let scoreBreakdown = '';
-  if (!result.withFoot) {
-    scoreBreakdown = `
-      <div style="color:#888;font-size:14px;margin-top:8px;">
-        純粋合計：${result.pureTotal.toFixed(1)}点 → 換算得点（÷40×70）
-      </div>
-    `;
-  } else if (isSecond) {
-    scoreBreakdown = `
-      <div style="color:#888;font-size:14px;margin-top:8px;">
-        初回得点：${result.firstFinalScore}点 → 改善率：${(result.R * 100).toFixed(1)}%（改善P：${result.improvP}＋バランス改善P：${result.balImprovP}）÷26
-      </div>
-    `;
-  } else {
-    scoreBreakdown = `
-      <div style="color:#888;font-size:14px;margin-top:8px;">
-        W得点：${result.wScore.toFixed(1)} ＋ B得点：${result.bScore.toFixed(1)} = ${result.pureTotal.toFixed(1)} ＋ 補正：${result.correction}点
-      </div>
-    `;
-  }
 
   // Summary table
   const s = getSettings();
