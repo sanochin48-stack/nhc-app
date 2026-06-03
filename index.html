@@ -2101,6 +2101,8 @@ function startOver() {
     firstMeasureData: null, prevScreen: null, saved: false,
     savedRecord: null,
   };
+  const chk = document.getElementById('intro-consent-chk');
+  if (chk) { chk.checked = false; updateAgreeBtn(); }
   showScreen('screen-intro1');
 }
 
