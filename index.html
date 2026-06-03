@@ -282,8 +282,10 @@ body{font-family:'Hiragino Sans','Meiryo','Yu Gothic',sans-serif;background:#f0f
 .analyzing-sub{font-size:16px;color:#aaa;margin-top:-8px;}
 
 /* ===== REDESIGNED TOTAL RESULT ===== */
-#screen-result-total{padding:0!important;background:#f5f6f8;position:relative;}
-#total-score-header{position:absolute;top:68px;right:16px;z-index:50;background:rgba(255,255,255,0.96);border-radius:14px;padding:10px 18px;box-shadow:0 3px 12px rgba(0,0,0,.18);display:flex;flex-direction:column;align-items:center;gap:2px;min-width:100px;}
+#screen-result-total{padding:0!important;background:#f5f6f8;position:relative;flex-direction:column;}
+#total-result-body{flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:4px 8px;}
+#total-result-body svg{width:100%;height:100%;max-height:calc(100vh - 80px);}
+#total-score-header{position:absolute;top:12px;right:16px;z-index:50;background:rgba(255,255,255,0.96);border-radius:14px;padding:10px 18px;box-shadow:0 3px 12px rgba(0,0,0,.18);display:flex;flex-direction:column;align-items:center;gap:2px;min-width:100px;}
 #total-action-area{padding:12px 20px;border-top:1px solid #eee;background:#fff;}
 
 /* ===== FINAL COMPARISON ===== */
@@ -641,10 +643,7 @@ body{font-family:'Hiragino Sans','Meiryo','Yu Gothic',sans-serif;background:#f0f
 <!-- ===== SCREEN: TOTAL RESULT ===== -->
 <div id="screen-result-total" class="screen">
   <div id="total-score-header"></div>
-  <div style="flex:1;overflow-y:auto;">
-    <div class="step-bar" id="step-bar-total" style="padding:6px 16px;"></div>
-    <div id="result-total-content" style="padding:0 8px 8px;"></div>
-  </div>
+  <div id="total-result-body"></div>
   <div id="total-action-area"></div>
 </div>
 
@@ -1211,7 +1210,7 @@ function showScoreRank() {
   showScreen('screen-score-rank');
 }
 
-function renderMeasCheck() {
+function renderMeasCheck(targetId) {
   const s = getSettings();
   const vals = state.vals;
   const DX = 160, DY = 15;
@@ -1271,7 +1270,7 @@ function renderMeasCheck() {
     ? `data:image/png;base64,${window._NHC_BODY_IMG}`
     : './images/body.png';
 
-  document.getElementById('meas-check-body').innerHTML =
+  document.getElementById(targetId || 'meas-check-body').innerHTML =
     `<svg viewBox="0 0 840 ${svgH}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
       <image href="${imgSrc}" x="${DX}" y="${DY}" width="497" height="629"/>
       ${items}
@@ -1690,12 +1689,8 @@ function renderTotalResult(result) {
   }
   document.getElementById('total-score-header').innerHTML = scoreHeaderHTML;
 
-  // Body diagram as main content
-  let content = buildBodyDiagram(result);
-  if (!state.withFoot) {
-    content += `<div class="note-box" style="margin:6px 8px 0;">⚠ 足を測定していないため、精度が30%ほど低いです。</div>`;
-  }
-  document.getElementById('result-total-content').innerHTML = content;
+  // Body diagram: 測定値一覧と同じレンダリングを流用
+  renderMeasCheck('total-result-body');
 
   // Action buttons
   if (state.session === 1) {
