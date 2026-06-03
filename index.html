@@ -337,7 +337,7 @@ body{font-family:'Hiragino Sans','Meiryo','Yu Gothic',sans-serif;background:#f0f
 .sr-cmp-rank{font-size:80px;font-weight:bold;line-height:1;flex-shrink:0;}
 .sr-cmp-paren{font-size:17px;font-weight:bold;color:#666;white-space:nowrap;flex-shrink:0;}
 .sr-cmp-arrow-el{font-size:52px;color:#3498db;line-height:1;opacity:0;transition:opacity 1.2s ease;}
-.sr-logo-img{width:56px;height:56px;object-fit:contain;flex-shrink:0;border-radius:50%;}
+.sr-logo-img{width:84px;height:84px;object-fit:contain;flex-shrink:0;border-radius:50%;}
 .sr-cmp-msg{font-size:22px;font-weight:bold;color:#16a085;text-align:center;line-height:1.5;max-width:520px;margin-top:4px;opacity:0;transition:opacity 1.5s ease;}
 @media(max-width:1023px){
   .sr-score{font-size:72px;}
@@ -1229,6 +1229,7 @@ function getRank(score) {
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  document.querySelector('.app-header').style.display = id === 'screen-intro1' ? '' : 'none';
   window.scrollTo(0,0);
 }
 
